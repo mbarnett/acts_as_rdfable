@@ -3,7 +3,7 @@ require_relative 'boot'
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require "acts_as_rdf"
+require "acts_as_rdfable"
 
 module Dummy
   class Application < Rails::Application

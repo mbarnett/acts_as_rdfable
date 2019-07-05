@@ -1,17 +1,17 @@
 $:.push File.expand_path("lib", __dir__)
 
 # Maintain your gem's version:
-require "acts_as_rdf/version"
+require "acts_as_rdfable/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
-  spec.name        = "acts_as_rdf"
-  spec.version     = ActsAsRdf::VERSION
+  spec.name        = "acts_as_rdfable"
+  spec.version     = ActsAsRdfable::VERSION
   spec.authors     = ["Matt Barnett"]
   spec.email       = ["matt@sixtyodd.com"]
-  spec.homepage    = "TODO"
-  spec.summary     = "TODO: Summary of ActsAsRdf."
-  spec.description = "TODO: Description of ActsAsRdf."
+  spec.homepage    = "http://thisisfake.com/asdf"
+  spec.summary     = " Summary of ActsAsRdfable."
+  spec.description = " Description of ActsAsRdfable."
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

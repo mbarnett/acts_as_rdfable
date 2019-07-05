@@ -1,4 +1,4 @@
-# ActsAsRdf
+# ActsAsRdfable
 Short description and motivation.
 
 ## Usage
@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'acts_as_rdf'
+gem 'acts_as_rdfable'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install acts_as_rdf
+$ gem install acts_as_rdfable
 ```
 
 ## Contributing
