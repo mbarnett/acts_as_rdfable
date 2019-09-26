@@ -16,23 +16,23 @@ module ActsAsRdfable::MigrationAnnotations
     end
   end
 
-  def add_rdf_table_annotation(table:, &configuration_block)
-    return delete_table_annotation(table) if reverting?
+  def add_rdf_table_annotations(for_table:, &configuration_block)
+    return delete_table_annotations(for_table) if reverting?
 
     config = RdfConfig.new
 
     configuration_block.call(config)
 
     config.mapping.each do |column_name, rdf_predicate|
-      annotation = RdfAnnotation.for_table(table).find_or_initialize_by(column: column_name)
+      annotation = RdfAnnotation.for_table(for_table).find_or_initialize_by(column: column_name)
       annotation.predicate = rdf_predicate.to_s
       annotation.save!
     end
   end
 
-  def remove_rdf_table_annotation(table)
+  def remove_rdf_table_annotations(table)
     irreversible! %Q(Cannot reverse deletion of RDF annotations for table "#{table}")
-    delete_table_annotation(table)
+    delete_table_annotations(table)
   end
 
   def add_rdf_column_annotation(table, column, has_predicate:)
@@ -50,7 +50,7 @@ module ActsAsRdfable::MigrationAnnotations
 
   private
 
-  def delete_table_annotation(table)
+  def delete_table_annotations(table)
     RdfAnnotation.for_table(table).destroy_all
   end
 
