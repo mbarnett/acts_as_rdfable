@@ -1,6 +1,7 @@
 require 'active_record'
 require "acts_as_rdfable/railtie"
 require 'acts_as_rdfable/acts_as_rdfable_core'
+require 'acts_as_rdfable/migration_annotations'
 require 'acts_as_rdfable/active_record'
 require 'acts_as_rdfable/rdf_annotation'
 
