@@ -1,4 +1,4 @@
-# ActsAsRdfable
+# ActsAsRDFable
 Short description and motivation.
 
 ## Usage

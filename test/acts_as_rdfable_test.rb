@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class ActsAsRdfable::Test < ActiveSupport::TestCase
+class ActsAsRDFable::Test < ActiveSupport::TestCase
   test "truth" do
-    assert_kind_of Module, ActsAsRdfable
+    assert_kind_of Module, ActsAsRDFable
   end
 end

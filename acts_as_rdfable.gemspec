@@ -6,12 +6,12 @@ require "acts_as_rdfable/version"
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
   spec.name        = "acts_as_rdfable"
-  spec.version     = ActsAsRdfable::VERSION
+  spec.version     = ActsAsRDFable::VERSION
   spec.authors     = ["Matt Barnett"]
   spec.email       = ["matt@sixtyodd.com"]
   spec.homepage    = "http://thisisfake.com/asdf"
-  spec.summary     = " Summary of ActsAsRdfable."
-  spec.description = " Description of ActsAsRdfable."
+  spec.summary     = " Summary of ActsAsRDFable."
+  spec.description = " Description of ActsAsRDFable."
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -25,7 +25,8 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "rails", "~> 5.2.3"
-
+  spec.add_dependency 'active_record', '~> 5.2.3'
+  spec.add_dependency 'builder', '~> 2.0'
+  spec.add_dependency 'tilt', '~>2.0.10'
   spec.add_development_dependency "sqlite3"
 end

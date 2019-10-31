@@ -5,7 +5,7 @@ require 'acts_as_rdfable/migration_annotations'
 require 'acts_as_rdfable/active_record'
 require 'acts_as_rdfable/rdf_annotation'
 
-module ActsAsRdfable
+module ActsAsRDFable
 
   class InvalidClassError < StandardError; end
   def gem_root

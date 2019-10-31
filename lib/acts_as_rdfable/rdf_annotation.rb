@@ -1,4 +1,4 @@
-class RdfAnnotation < ActiveRecord::Base
+class RDFAnnotation < ActiveRecord::Base
   validates :table, presence: true
   validates :column, presence: true
   validates :predicate, presence: true
