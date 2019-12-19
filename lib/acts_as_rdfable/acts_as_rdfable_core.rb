@@ -10,7 +10,7 @@ module ActsAsRdfable::ActsAsRdfableCore
       end
 
       define_method :rdf_annotation_for_attr do |attr|
-        self.class.rdf_annotations.where column: attr
+        self.class.rdf_annotation_for_attr attr
       end
 
       define_singleton_method :rdf_annotations do
