@@ -17,4 +17,12 @@ module ActsAsRdfable
   end
 
   module_function :gem_root, :migration_path
+
+  def self.add_annotation_bindings!(instance)
+    instance.singleton_class.class_eval do
+      include ActsAsRdfable::ActsAsRdfableCore
+
+      acts_as_rdfable
+    end
+  end
 end
