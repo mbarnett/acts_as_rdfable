@@ -6,11 +6,11 @@ module ActsAsRdfable::ActsAsRdfableCore
       raise InvalidClassError unless self < ActiveRecord::Base
 
       define_method :rdf_annotations do
-        self.class.rdf_annotations
+        self.singleton_class.rdf_annotations
       end
 
       define_method :rdf_annotation_for_attr do |attr|
-        self.class.rdf_annotation_for_attr attr
+        self.singleton_class.rdf_annotation_for_attr attr
       end
 
       define_singleton_method :rdf_annotations do
