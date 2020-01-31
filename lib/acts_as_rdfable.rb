@@ -4,6 +4,10 @@ require 'acts_as_rdfable/acts_as_rdfable_core'
 require 'acts_as_rdfable/migration_annotations'
 require 'acts_as_rdfable/active_record'
 require 'acts_as_rdfable/rdf_annotation'
+require 'acts_as_rdfable/serializer'
+require 'acts_as_rdfable/serializers/oai_dc'
+require 'acts_as_rdfable/serializers/oai_etdms'
+require 'acts_as_rdfable/serializers/rdf_xml'
 
 module ActsAsRdfable
 
@@ -18,11 +22,11 @@ module ActsAsRdfable
 
   module_function :gem_root, :migration_path
 
-  def self.add_annotation_bindings!(instance)
+  def self.add_annotation_bindings!(instance, formats: [])
     instance.singleton_class.class_eval do
       include ActsAsRdfable::ActsAsRdfableCore
 
-      acts_as_rdfable
+      acts_as_rdfable formats: []
     end
   end
 end
