@@ -28,12 +28,7 @@ module ActsAsRdfable
     def self.serialize(instance:, format:, xml_doc: )
       serializer = self.serializer_for(format)
       presenter = self.presenter_for(instance, format)
-
-#  support instantiating a doc here? I don't necessarily want to deal with larger declaration issues though...
-#      xml_doc = Builder::XmlMarkup.new unless xml_doc.present?
-
       serializer.serialize(presenter, xml: xml_doc)
-
     end
   end
 end
