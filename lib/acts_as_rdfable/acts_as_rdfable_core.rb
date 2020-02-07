@@ -7,7 +7,7 @@ module ActsAsRdfable::ActsAsRdfableCore
       raise InvalidArgumentError unless (formats.is_a?(Symbol) || formats.is_a?(Array))
 
       formats = [formats] if formats.is_a? Symbol
-      @aar_serialization_formats = formats
+      formats.each { |format| ActsAsRdfable::Serializer.register_format_for_class(self, format: format) }
 
       define_method :rdf_annotations do
         self.singleton_class.rdf_annotations
@@ -18,9 +18,8 @@ module ActsAsRdfable::ActsAsRdfableCore
       end
 
       define_method :serialize_metadata do |format:, into_document:|
-        binding.pry
-        raise InvalidArgumentError unless self.singleton_class.supported_metadata_serialization_formats.include?(format)
         format = format.to_sym unless format.is_a?(Symbol)
+        raise InvalidArgumentError unless self.singleton_class.supported_metadata_serialization_formats.include?(format)
         ActsAsRdfable::Serializer.serialize(instance: self, format: format, xml_doc: into_document)
       end
 
@@ -33,7 +32,7 @@ module ActsAsRdfable::ActsAsRdfableCore
       end
 
       define_singleton_method :supported_metadata_serialization_formats do
-        @aar_serialization_formats || []
+        formats
       end
 
     end

@@ -14,10 +14,26 @@ module ActsAsRdfable
       @serializers[format]
     end
 
+    def self.register_format_for_class(klass, format:)
+      format = format.to_sym if format.is_a?(String)
+
+      classes_for_format[format] ||= []
+      classes_for_format[format] << klass
+    end
+
+    def self.classes_for_format
+      @registered_class_formats ||= {}
+    end
+
+    def self.serializable_classes_for_format(format)
+      format = format.to_sym if format.is_a?(String)
+      classes_for_format[format] || []
+    end
+
     def self.presenter_for(instance, format)
       @presenter_cache ||= {}
       @presenter_cache[instance] ||= begin
-        klass_name = "Metadata::#{format.to_s.classify}::#{instance.class}Decorator"
+        klass_name = "Metadata::#{format.to_s.camelize}::#{instance.class}Decorator"
         klass = klass_name.constantize
         klass.decorate(instance)
       rescue NameError

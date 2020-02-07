@@ -7,7 +7,6 @@ require 'acts_as_rdfable/rdf_annotation'
 require 'acts_as_rdfable/serializer'
 require 'acts_as_rdfable/serializers/oai_dc'
 require 'acts_as_rdfable/serializers/oai_etdms'
-require 'acts_as_rdfable/serializers/rdf_xml'
 
 module ActsAsRdfable
 
@@ -28,5 +27,9 @@ module ActsAsRdfable
 
       acts_as_rdfable formats: []
     end
+  end
+
+  def self.known_classes_for(format:)
+    ActsAsRdfable::Serializer.serializable_classes_for_format(format)
   end
 end

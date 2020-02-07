@@ -2,7 +2,6 @@ class OaiDc
   ActsAsRdfable::Serializer.register_serializer format: :oai_dc, serializer: self
 
   def self.serialize(object, xml:)
-
     xml.tag!('oai_dc:dc', 'xmlns:oai_dc': 'http://www.openarchives.org/OAI/2.0/oai_dc/',
              'xmlns:dc':'http://purl.org/dc/elements/1.1/',
              'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
