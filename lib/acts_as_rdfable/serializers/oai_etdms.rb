@@ -17,14 +17,13 @@ class OaiEtdms
       oai.etd_ms(:language, object.language)  if object.language.present?
       oai.etd_ms(:rights, object.rights) if object.rights.present?
 
-      if object.degree.present?
-        oai.etd_ms(:degree) do |degree|
-          degree.etd_ms(:name, object.degree)
-          degree.etd_ms(:level, object.degree_level) if object.degree_level.present?
-          degree.etd_ms(:discipline, object.discipline) if object.discipline.present?
-          degree.etd_ms(:grantor, object.institution) if object.institution.present?
-        end
-      end
+    oai.etd_ms(:degree) do |degree|
+      degree.etd_ms(:name, object.degree_name)
+      degree.etd_ms(:level, object.degree_level) if object.degree_level.present?
+      degree.etd_ms(:discipline, object.discipline) if object.discipline.present?
+      degree.etd_ms(:grantor, object.institution)
+      degree.etd_ms(:publisher, object.publisher)
+    end
     end
   end
 end
