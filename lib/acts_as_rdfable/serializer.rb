@@ -34,6 +34,9 @@ module ActsAsRdfable
       @presenter_cache ||= {}
       @presenter_cache[instance] ||= begin
         klass_name = "Metadata::#{format.to_s.camelize}::#{instance.class}Decorator"
+        if klass_name == "Metadata::OaiDc::ThesisDecorator"
+          klass_name = "Metadata::OaiEtdms::ThesisDecorator"
+        end
         klass = klass_name.constantize
         klass.decorate(instance)
       rescue NameError

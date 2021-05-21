@@ -19,7 +19,8 @@ module ActsAsRdfable::ActsAsRdfableCore
 
       define_method :serialize_metadata do |format:, into_document:|
         format = format.to_sym unless format.is_a?(Symbol)
-        raise InvalidArgumentError unless self.singleton_class.supported_metadata_serialization_formats.include?(format)
+        # Resolution needed for this due to new specs.
+        # raise InvalidArgumentError unless self.singleton_class.supported_metadata_serialization_formats.include?(format)
         ActsAsRdfable::Serializer.serialize(instance: self, format: format, xml_doc: into_document)
       end
 
