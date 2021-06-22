@@ -17,6 +17,10 @@ module ActsAsRdfable::ActsAsRdfableCore
         self.singleton_class.rdf_annotation_for_attr attr
       end
 
+      define_method :attribute_for_rdf_annotation do |annotation|
+        self.singleton_class.attribute_for_rdf_annotation annotation
+      end
+
       define_method :serialize_metadata do |format:, into_document:|
         format = format.to_sym unless format.is_a?(Symbol)
         raise InvalidArgumentError unless self.singleton_class.supported_metadata_serialization_formats.include?(format)
@@ -29,6 +33,10 @@ module ActsAsRdfable::ActsAsRdfableCore
 
       define_singleton_method :rdf_annotation_for_attr do |attr|
         RdfAnnotation.for_table_column(self.table_name, attr)
+      end
+
+      define_singleton_method :attribute_for_rdf_annotation do |annotation|
+        RdfAnnotation.find_by(table: self.table_name, predicate: annotation)&.column
       end
 
       define_singleton_method :supported_metadata_serialization_formats do
