@@ -36,7 +36,7 @@ module ActsAsRdfable::ActsAsRdfableCore
       end
 
       define_singleton_method :attribute_for_rdf_annotation do |annotation|
-        RdfAnnotation.find_by(table: self.table_name, predicate: annotation)&.column
+        RdfAnnotation.for_table_predicate(self.table_name, annotation)
       end
 
       define_singleton_method :supported_metadata_serialization_formats do
