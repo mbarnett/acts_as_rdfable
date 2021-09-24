@@ -73,6 +73,6 @@ module ActsAsRdfable::MigrationAnnotations
   end
 
   def dump_rdf_annotations
-    ::SeedDump.dump(RdfAnnotation, file: 'db/seeds/rdf_annotations.rb')
+    SeedDump.dump(RdfAnnotation, file: ActsAsRdfable.config.dump_to_path) if ActsAsRdfable.config.dump_changes
   end
 end
