@@ -1,0 +1,8 @@
+Description:
+    Copies ActsAsRdfable configuration file to your application's initializer directory.
+
+Example:
+    rails g acts_as_rdfable:config
+
+    This will create:
+        config/initializers/acts_as_rdfable.rb

@@ -1,3 +1,5 @@
+require 'seed_dump'
+
 module ActsAsRdfable::MigrationAnnotations
   extend ActiveSupport::Concern
 
@@ -28,11 +30,15 @@ module ActsAsRdfable::MigrationAnnotations
       annotation.predicate = rdf_predicate.to_s
       annotation.save!
     end
+
+    dump_rdf_annotations
   end
 
   def remove_rdf_table_annotations(table)
     irreversible! %Q(Cannot reverse deletion of RDF annotations for table "#{table}")
     delete_table_annotations(table)
+
+    dump_rdf_annotations
   end
 
   def add_rdf_column_annotation(table, column, has_predicate:)
@@ -41,11 +47,15 @@ module ActsAsRdfable::MigrationAnnotations
     annotation = RdfAnnotation.for_table(table).find_or_initialize_by(column: column)
     annotation.predicate = has_predicate.to_s
     annotation.save!
+
+    dump_rdf_annotations
   end
 
   def remove_rdf_column_annotation(table, column)
     irreversible! %Q(Cannot reverse deletion of RDF annotations for "#{table}"."#{column}")
     delete_column_annotation(table, column)
+
+    dump_rdf_annotations
   end
 
   private
@@ -60,5 +70,9 @@ module ActsAsRdfable::MigrationAnnotations
 
   def irreversible!(msg)
     raise ActiveRecord::IrreversibleMigration, msg if reverting?
+  end
+
+  def dump_rdf_annotations
+    SeedDump.dump(RdfAnnotation, file: ActsAsRdfable.config.dump_to_path) if ActsAsRdfable.config.dump_changes
   end
 end

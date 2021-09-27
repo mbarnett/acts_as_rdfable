@@ -21,6 +21,17 @@ Or install it yourself as:
 $ gem install acts_as_rdfable
 ```
 
+## Configuring ActsAsRdfable
+You can configure the following default values by overriding these values using `ActsAsRdfable.configure` method.
+```
+dump_changes      # false by default
+dump_to_path      # 'db/seeds/rdf_annotations.rb' by default
+```
+There's a handy generator that generates the default configuration file into config/initializers directory. Run the following generator command, then edit the generated file.
+```
+% rails g acts_as_rdfable:config
+```
+
 ## Contributing
 Contribution directions go here.
 
