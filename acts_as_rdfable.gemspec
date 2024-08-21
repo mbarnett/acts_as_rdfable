@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", ">= 5.2.3"
   spec.add_dependency "seed_dump", '~> 3.3', '>= 3.3.1'
+  spec.add_dependency "rubocop", '~> 1.12', require: false
 
   spec.add_development_dependency "sqlite3"
 end
